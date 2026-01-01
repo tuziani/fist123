@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萌萌小熊 - 治愈系玩偶周边</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #fff5f5 0%, #fef3e2 50%, #f0f9ff 100%);
+            min-height: 100vh;
+            color: #5a4a42;
+        }
+
+        /* 导航栏 */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 50px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e8a87c;
+        }
+
+        .logo span {
+            color: #c38d9e;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #5a4a42;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e8a87c;
+        }
+
+        /* 主视觉区 */
+        .hero {
+            padding: 150px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "✨🧸✨";
+            position: absolute;
+            font-size: 100px;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #c38d9e;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #7a6a62;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #e8a87c 0%, #c38d9e 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(200, 141, 158, 0.4);
+        }
+
+        /* 特色介绍 */
+        .features {
+            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .features .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #c38d9e;
+            margin-bottom: 60px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            color: #e8a87c;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #7a6a62;
+            line-height: 1.6;
+        }
+
+        /* 产品展示 */
+        .products {
+            padding: 80px 20px;
+        }
+
+        .products .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.03);
+        }
+
+        .product-image {
+            height: 250px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h3 {
+            font-size: 20px;
+            color: #5a4a42;
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            color: #9a8a82;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            color: #e8a87c;
+            font-weight: bold;
+        }
+
+        .product-price span {
+            font-size: 14px;
+            color: #9a8a82;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+
+        /* 品牌故事 */
+        .story {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #fff9f0 0%, #fff0f5 100%);
+        }
+
+        .story .container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .story-content {
+            background: white;
+            padding: 60px 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        .story-emoji {
+            font-size: 60px;
+            margin-bottom: 30px;
+        }
+
+        .story h2 {
+            font-size: 32px;
+            color: #c38d9e;
+            margin-bottom: 30px;
+        }
+
+        .story p {
+            font-size: 18px;
+            color: #7a6a62;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        /* 联系区域 */
+        .contact {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .contact .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 32px;
+            color: #c38d9e;
+            margin-bottom: 20px;
+        }
+
+        .contact p {
+            color: #7a6a62;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #5a4a42;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+        }
+
+        /* 页脚 */
+        footer {
+            background: #5a4a42;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .story-content {
+                padding: 40px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container">
+            <div class="logo">萌萌<span>小熊</span></div>
+            <ul>
+                <li><a href="#features">特色</a></li>
+                <li><a href="#products">产品</a></li>
+                <li><a href="#story">故事</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <h1>遇见萌萌小熊</h1>
+        <p>每一只小熊都承载着温暖与治愈，陪伴你度过每一个平凡又特别的日子</p>
+        <a href="#products" class="btn-primary">探索系列</a>
+    </section>
+
+    <!-- 特色介绍 -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">为什么选择我们</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧸</div>
+                    <h3>原创设计</h3>
+                    <p>每一个形象都由我们的设计师原创设计，独一无二的可爱造型</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💝</div>
+                    <h3>优质材料</h3>
+                    <p>选用环保安全的优质面料，柔软亲肤，可放心拥抱</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>精细工艺</h3>
+                    <p>纯手工缝制，每一针每一线都倾注了匠人的心意</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3>精美包装</h3>
+                    <p>专属礼盒包装，送礼自用两相宜，传递温暖与心意</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品展示 -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">人气产品</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">🧸</div>
+                    <div class="product-info">
+                        <h3>经典款毛绒公仔</h3>
+                        <p>30cm软萌毛绒玩偶，超柔触感</p>
+                        <div class="product-price">¥128 <span>¥168</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🎒</div>
+                    <div class="product-info">
+                        <h3>萌趣双肩包</h3>
+                        <p>可爱造型背包，实用又时尚</p>
+                        <div class="product-price">¥89 <span>¥129</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🔑</div>
+                    <div class="product-info">
+                        <h3>迷你挂件钥匙扣</h3>
+                        <p>随身携带的小确幸</p>
+                        <div class="product-price">¥29 <span>¥39</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">☕</div>
+                    <div class="product-info">
+                        <h3>陶瓷马克杯</h3>
+                        <p>萌系插画杯，治愈每一天</p>
+                        <div class="product-price">¥49 <span>¥69</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">📓</div>
+                    <div class="product-info">
+                        <h3>手账本套装</h3>
+                        <p>记录生活的小美好</p>
+                        <div class="product-price">¥39 <span>¥59</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">📱</div>
+                    <div class="product-info">
+                        <h3>创意手机壳</h3>
+                        <p>为你的手机穿上可爱外衣</p>
+                        <div class="product-price">¥35 <span>¥55</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 品牌故事 -->
+    <section class="story" id="story">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-emoji">🌟</div>
+                <h2>我们的故事</h2>
+                <p>萌萌小熊诞生于一个温暖的午后，创始人在咖啡馆里画下了第一只小熊的草图。</p>
+                <p>我们相信，每个人心中都住着一个需要被治愈的小孩。萌萌小熊的使命就是用可爱和温暖，治愈每一个疲惫的灵魂。</p>
+                <p>从一只小熊开始，到现在丰富的产品线，我们始终坚持原创设计、品质至上，希望把幸福感传递给每一位喜欢我们的朋友。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系区域 -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>关注我们</h2>
+            <p>获取新品资讯、限定福利和更多可爱内容</p>
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <span>📱</span> 小红书
+                </a>
+                <a href="#" class="social-link">
+                    <span>💬</span> 微信公众号
+                </a>
+                <a href="#" class="social-link">
+                    <span>🛒</span> 淘宝店铺
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2025 萌萌小熊 MengMeng Bear. All rights reserved.</p>
+    </footer>
+</body>
+</html>
